@@ -1,25 +1,72 @@
 from tkinter import *
 
+numero1 = ''
+dividir = False
+multiplica = False
+diminui = False
+somar = False
+
+
 def click(num):
     e.insert(END, num)
 
 def divisao():
-    return
+    global numero1
+    global dividir
+    dividir = True
+    numero1 = e.get()
+    e.delete(0, END)
+
 
 def multiplicar():
-    return
+    global numero1
+    global multiplica
+    multiplica = True
+    numero1 = e.get()
+    e.delete(0, END)
 
 def subtracao():
-    return
+    global numero1
+    global diminui
+    diminui = True
+    numero1 = e.get()
+    e.delete(0, END)
 
 def soma():
-    return
+    global numero1
+    global somar
+    somar = True
+    numero1 = e.get()
+    e.delete(0, END)
 
 def igual():
-    return
+    global dividir
+    global multiplica
+    global diminui
+    global somar
+    numero2 = e.get()
+
+    if dividir == True:
+        e.delete(0, END)
+        e.insert(0,(int(numero1))/(int(numero2)))
+        dividir = False
+    if multiplica == True:
+        e.delete(0, END)
+        e.insert(0,int(numero1)*int(numero2))
+        multiplica = False
+    if diminui == True:
+        e.delete(0, END)
+        e.insert(0,int(numero1)-int(numero2))
+        diminui = False
+    if somar == True:
+        e.delete(0, END)
+        e.insert(0,int(numero1)+int(numero2))
+        somar = False
+    
+
 
 def deletar():
-    return
+    e.delete(0, END)
 
 # configurando janela
 root = Tk()
@@ -57,7 +104,7 @@ divisao_button.grid(row=0, column=4)
 multiplicar_button = Button(root,
                         text='X',
                         font=('futura',12,'bold'),
-                        padx=41,
+                        padx=42,
                         pady=20,
                         bg='#003DC0',
                         fg='#fff',
@@ -72,7 +119,7 @@ multiplicar_button.grid(row=1, column=4)
 subtracao_button = Button(root,
                         text='-',
                         font=('futura',12,'bold'),
-                        padx=41.5,
+                        padx=45,
                         pady=20,
                         bg='#003DC0',
                         fg='#fff',
@@ -87,7 +134,7 @@ subtracao_button.grid(row=2, column=4)
 soma_button = Button(root,
                         text='+',
                         font=('futura',12,'bold'),
-                        padx=41,
+                        padx=43,
                         pady=20,
                         bg='#003DC0',
                         fg='#fff',
@@ -102,7 +149,7 @@ soma_button.grid(row=3, column=4)
 igual_button = Button(root,
                         text='=',
                         font=('futura',12,'bold'),
-                        padx=41,
+                        padx=43,
                         pady=20,
                         bg='#003DC0',
                         fg='#fff',
@@ -149,7 +196,7 @@ dois_button.grid(row=1, column=2)
 tres_button = Button(root,
                         text='3',
                         font=('futura',12,'bold'),
-                        padx=40,
+                        padx=42,
                         pady=20,
                         bg='#003DC0',
                         fg='#fff',
@@ -196,7 +243,7 @@ cinco_button.grid(row=2, column=2)
 seis_button = Button(root,
                         text='6',
                         font=('futura',12,'bold'),
-                        padx=40,
+                        padx=42,
                         pady=20,
                         bg='#003DC0',
                         fg='#fff',
@@ -243,7 +290,7 @@ oito_button.grid(row=3, column=2)
 nove_button = Button(root,
                         text='9',
                         font=('futura',12,'bold'),
-                        padx=40,
+                        padx=42,
                         pady=20,
                         bg='#003DC0',
                         fg='#fff',
@@ -275,7 +322,7 @@ zero_button.grid(row=4, column=1, columnspan=2)
 del_button = Button(root,
                         text='C',
                         font=('futura',12,'bold'),
-                        padx=40,
+                        padx=41,
                         pady=20,
                         bg='#003DC0',
                         fg='#fff',
