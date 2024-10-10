@@ -1,4 +1,6 @@
-from tkinter import *
+import customtkinter as ctk
+
+ctk.set_appearance_mode("dark")
 
 numero1 = ''
 dividir = False
@@ -8,14 +10,16 @@ somar = False
 
 
 def click(num):
-    e.insert(END, num)
+    tamanho_texto = len(e.get())
+    e.insert(tamanho_texto,num)
 
 def divisao():
     global numero1
     global dividir
     dividir = True
     numero1 = e.get()
-    e.delete(0, END)
+    tamanho_texto = len(e.get())
+    e.delete(0, tamanho_texto)
 
 
 def multiplicar():
@@ -23,21 +27,24 @@ def multiplicar():
     global multiplica
     multiplica = True
     numero1 = e.get()
-    e.delete(0, END)
+    tamanho_texto = len(e.get())
+    e.delete(0, tamanho_texto)
 
 def subtracao():
     global numero1
     global diminui
     diminui = True
     numero1 = e.get()
-    e.delete(0, END)
+    tamanho_texto = len(e.get())
+    e.delete(0, tamanho_texto)
 
 def soma():
     global numero1
     global somar
     somar = True
     numero1 = e.get()
-    e.delete(0, END)
+    tamanho_texto = len(e.get())
+    e.delete(0, tamanho_texto)
 
 def igual():
     global dividir
@@ -47,293 +54,250 @@ def igual():
     numero2 = e.get()
 
     if dividir == True:
-        e.delete(0, END)
+        tamanho_texto = len(e.get())
+        e.delete(0, tamanho_texto)
         e.insert(0,(int(numero1))/(int(numero2)))
         dividir = False
     if multiplica == True:
-        e.delete(0, END)
+        tamanho_texto = len(e.get())
+        e.delete(0, tamanho_texto)
         e.insert(0,int(numero1)*int(numero2))
         multiplica = False
     if diminui == True:
-        e.delete(0, END)
+        tamanho_texto = len(e.get())
+        e.delete(0, tamanho_texto)
         e.insert(0,int(numero1)-int(numero2))
         diminui = False
     if somar == True:
-        e.delete(0, END)
+        tamanho_texto = len(e.get())
+        e.delete(0, tamanho_texto)
         e.insert(0,int(numero1)+int(numero2))
         somar = False
     
 
 
 def deletar():
-    e.delete(0, END)
+    tamanho_texto = len(e.get())
+    e.delete(0, tamanho_texto)
 
 # configurando janela
-root = Tk()
+root = ctk.CTk()
 root.title('Calculadora')
 root.geometry('408x355')
-root.maxsize(width='408', height='355')
-root.minsize(width='408', height='355')
+root.resizable(False,False)
 root.configure(bg='#D8D8D8')
 
 # Screen
-e = Entry(root, width=15 ,borderwidth=4 ,relief=FLAT ,fg='#003DC0' ,font=('futura',25,'bold') ,bg='#fff', justify='center')
-e.grid(
-    row=0,
-    column=0,
-    columnspan=4,
-    pady=2
-)
-
+e = ctk.CTkEntry(root, width=306,height=71 ,border_width=4 ,fg_color='#fff' ,font=('futura',25,'bold') ,bg_color='#003DC0', justify='center', text_color='#003DC0')
+e.place(x=0, y=0)
 # Operações
-divisao_button = Button(root,
+divisao_button = ctk.CTkButton(root,
                         text='÷',
-                        font=('futura',12,'bold'),
-                        padx=41,
-                        pady=20,
-                        bg='#003DC0',
-                        fg='#fff',
-                        relief=FLAT,
-                        justify='center',
-                        activebackground='#0033A3',
-                        activeforeground='#fff',
+                        font=('futura',16,'bold'),
+                        text_color='#003DC0',
+                        width=102,
+                        height=71,
+                        corner_radius=0,
+                        bg_color='blue',
+                        fg_color='#fff',
                         command=divisao)
 
-divisao_button.grid(row=0, column=4)
+divisao_button.place(x=306.5,y=0)
 
-multiplicar_button = Button(root,
+multiplicar_button = ctk.CTkButton(root,
                         text='X',
-                        font=('futura',12,'bold'),
-                        padx=42,
-                        pady=20,
-                        bg='#003DC0',
-                        fg='#fff',
-                        relief=FLAT,
-                        justify='center',
-                        activebackground='#0033A3',
-                        activeforeground='#fff',
+                        font=('futura',16,'bold'),
+                        text_color='#003DC0',
+                        width=102,
+                        height=71,
+                        corner_radius=0,
+                        bg_color='blue',
+                        fg_color='#fff',
                         command=multiplicar)
 
-multiplicar_button.grid(row=1, column=4)
+multiplicar_button.place(x=306.5,y=71)
 
-subtracao_button = Button(root,
+subtracao_button = ctk.CTkButton(root,
                         text='-',
-                        font=('futura',12,'bold'),
-                        padx=45,
-                        pady=20,
-                        bg='#003DC0',
-                        fg='#fff',
-                        relief=FLAT,
-                        justify='center',
-                        activebackground='#0033A3',
-                        activeforeground='#fff',
+                        font=('futura',16,'bold'),
+                        text_color='#003DC0',
+                        width=102,
+                        height=71,
+                        corner_radius=0,
+                        bg_color='blue',
+                        fg_color='#fff',
                         command=subtracao)
 
-subtracao_button.grid(row=2, column=4)
+subtracao_button.place(x=306.5,y=142)
 
-soma_button = Button(root,
+soma_button = ctk.CTkButton(root,
                         text='+',
-                        font=('futura',12,'bold'),
-                        padx=43,
-                        pady=20,
-                        bg='#003DC0',
-                        fg='#fff',
-                        relief=FLAT,
-                        justify='center',
-                        activebackground='#0033A3',
-                        activeforeground='#fff',
+                        font=('futura',16,'bold'),
+                        text_color='#003DC0',
+                        width=102,
+                        height=71,
+                        corner_radius=0,
+                        bg_color='blue',
+                        fg_color='#fff',
                         command=soma)
 
-soma_button.grid(row=3, column=4)
+soma_button.place(x=306.5,y=213)
 
-igual_button = Button(root,
+igual_button = ctk.CTkButton(root,
                         text='=',
-                        font=('futura',12,'bold'),
-                        padx=43,
-                        pady=20,
-                        bg='#003DC0',
-                        fg='#fff',
-                        relief=FLAT,
-                        justify='center',
-                        activebackground='#0033A3',
-                        activeforeground='#fff',
+                        font=('futura',16,'bold'),
+                        text_color='#003DC0',
+                        width=102,
+                        height=71,
+                        corner_radius=0,
+                        bg_color='blue',
+                        fg_color='#fff',
                         command=igual)
 
-igual_button.grid(row=4, column=4)
+igual_button.place(x=306.5,y=284)
+
 
 # Primeira fileira
 
-um_button = Button(root,
+um_button = ctk.CTkButton(root,
                         text='1',
                         font=('futura',12,'bold'),
-                        padx=40,
-                        pady=20,
-                        bg='#003DC0',
-                        fg='#fff',
-                        relief=FLAT,
-                        justify='center',
-                        activebackground='#0033A3',
-                        activeforeground='#fff',
+                        text_color='#003DC0',
+                        width=102,
+                        height=71,
+                        corner_radius=0,
+                        bg_color='blue',
+                        fg_color='#fff',
                         command=lambda: click(1))
+um_button.place(x=0,y=71)
 
-um_button.grid(row=1, column=1)
 
-dois_button = Button(root,
+dois_button = ctk.CTkButton(root,
                         text='2',
                         font=('futura',12,'bold'),
-                        padx=40,
-                        pady=20,
-                        bg='#003DC0',
-                        fg='#fff',
-                        relief=FLAT,
-                        justify='center',
-                        activebackground='#0033A3',
-                        activeforeground='#fff',
+                        text_color='#003DC0',
+                        width=102,
+                        height=71,
+                        corner_radius=0,
+                        bg_color='blue',
+                        fg_color='#fff',
                         command=lambda: click(2))
+dois_button.place(x=102,y=71)
 
-dois_button.grid(row=1, column=2)
-
-tres_button = Button(root,
+tres_button = ctk.CTkButton(root,
                         text='3',
                         font=('futura',12,'bold'),
-                        padx=42,
-                        pady=20,
-                        bg='#003DC0',
-                        fg='#fff',
-                        relief=FLAT,
-                        justify='center',
-                        activebackground='#0033A3',
-                        activeforeground='#fff',
+                        text_color='#003DC0',
+                        width=102,
+                        height=71,
+                        corner_radius=0,
+                        bg_color='blue',
+                        fg_color='#fff',
                         command=lambda: click(3))
-
-tres_button.grid(row=1, column=3)
+tres_button.place(x=204,y=71)
 
 # segunda fileira
 
-quatro_button = Button(root,
+quatro_button = ctk.CTkButton(root,
                         text='4',
                         font=('futura',12,'bold'),
-                        padx=40,
-                        pady=20,
-                        bg='#003DC0',
-                        fg='#fff',
-                        relief=FLAT,
-                        justify='center',
-                        activebackground='#0033A3',
-                        activeforeground='#fff',
+                        text_color='#003DC0',
+                        width=102,
+                        height=71,
+                        corner_radius=0,
+                        bg_color='blue',
+                        fg_color='#fff',
                         command=lambda: click(4))
+quatro_button.place(x=0,y=142)
 
-quatro_button.grid(row=2, column=1)
-
-cinco_button = Button(root,
+cinco_button = ctk.CTkButton(root,
                         text='5',
                         font=('futura',12,'bold'),
-                        padx=40,
-                        pady=20,
-                        bg='#003DC0',
-                        fg='#fff',
-                        relief=FLAT,
-                        justify='center',
-                        activebackground='#0033A3',
-                        activeforeground='#fff',
+                        text_color='#003DC0',
+                        width=102,
+                        height=71,
+                        corner_radius=0,
+                        bg_color='blue',
+                        fg_color='#fff',
                         command=lambda: click(5))
+cinco_button.place(x=102,y=142)
 
-cinco_button.grid(row=2, column=2)
-
-seis_button = Button(root,
+seis_button = ctk.CTkButton(root,
                         text='6',
                         font=('futura',12,'bold'),
-                        padx=42,
-                        pady=20,
-                        bg='#003DC0',
-                        fg='#fff',
-                        relief=FLAT,
-                        justify='center',
-                        activebackground='#0033A3',
-                        activeforeground='#fff',
+                        text_color='#003DC0',
+                        width=102,
+                        height=71,
+                        corner_radius=0,
+                        bg_color='blue',
+                        fg_color='#fff',
                         command=lambda: click(6))
-
-seis_button.grid(row=2, column=3)
+seis_button.place(x=204,y=142)
 
 # terceira fileira
 
-sete_button = Button(root,
+sete_button = ctk.CTkButton(root,
                         text='7',
                         font=('futura',12,'bold'),
-                        padx=40,
-                        pady=20,
-                        bg='#003DC0',
-                        fg='#fff',
-                        relief=FLAT,
-                        justify='center',
-                        activebackground='#0033A3',
-                        activeforeground='#fff',
+                        text_color='#003DC0',
+                        width=102,
+                        height=71,
+                        corner_radius=0,
+                        bg_color='blue',
+                        fg_color='#fff',
                         command=lambda: click(7))
+sete_button.place(x=0,y=213)
 
-sete_button.grid(row=3, column=1)
-
-oito_button = Button(root,
+oito_button = ctk.CTkButton(root,
                         text='8',
                         font=('futura',12,'bold'),
-                        padx=40,
-                        pady=20,
-                        bg='#003DC0',
-                        fg='#fff',
-                        relief=FLAT,
-                        justify='center',
-                        activebackground='#0033A3',
-                        activeforeground='#fff',
+                        text_color='#003DC0',
+                        width=102,
+                        height=71,
+                        corner_radius=0,
+                        bg_color='blue',
+                        fg_color='#fff',
                         command=lambda: click(8))
+oito_button.place(x=102,y=213)
 
-oito_button.grid(row=3, column=2)
-
-nove_button = Button(root,
+nove_button = ctk.CTkButton(root,
                         text='9',
                         font=('futura',12,'bold'),
-                        padx=42,
-                        pady=20,
-                        bg='#003DC0',
-                        fg='#fff',
-                        relief=FLAT,
-                        justify='center',
-                        activebackground='#0033A3',
-                        activeforeground='#fff',
+                        text_color='#003DC0',
+                        width=102,
+                        height=71,
+                        corner_radius=0,
+                        bg_color='blue',
+                        fg_color='#fff',
                         command=lambda: click(9))
+nove_button.place(x=204,y=213)
 
-nove_button.grid(row=3, column=3)
 
 # quarta fileira
 
-zero_button = Button(root,
+zero_button = ctk.CTkButton(root,
                         text='0',
                         font=('futura',12,'bold'),
-                        padx=91,
-                        pady=20,
-                        bg='#003DC0',
-                        fg='#fff',
-                        relief=FLAT,
-                        justify='center',
-                        activebackground='#0033A3',
-                        activeforeground='#fff',
+                        text_color='#003DC0',
+                        width=204,
+                        height=71,
+                        corner_radius=0,
+                        bg_color='blue',
+                        fg_color='#fff',
                         command=lambda: click(0))
+zero_button.place(x=0,y=284)
 
-zero_button.grid(row=4, column=1, columnspan=2)
-
-del_button = Button(root,
+del_button = ctk.CTkButton(root,
                         text='C',
                         font=('futura',12,'bold'),
-                        padx=41,
-                        pady=20,
-                        bg='#003DC0',
-                        fg='#fff',
-                        relief=FLAT,
-                        justify='center',
-                        activebackground='#0033A3',
-                        activeforeground='#fff',
+                        text_color='#003DC0',
+                        width=102,
+                        height=71,
+                        corner_radius=0,
+                        bg_color='blue',
+                        fg_color='#fff',
                         command=deletar)
-
-del_button.grid(row=4, column=3)
-
+del_button.place(x=204,y=284)
 
 
 
